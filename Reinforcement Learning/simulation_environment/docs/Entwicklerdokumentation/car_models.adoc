@@ -1,0 +1,234 @@
+=== *Fahrzeugmodelle*
+
+Die Fahrzeugmodelle existieren in den Dateinen `src/simluation/simulation_projektseminar/old_model_complete.sdf` für das Projektseminarauto und in
+`src/simulation/simulation_carolo_cup/complex_world.sdf` für das Wettbewerbsauto. Eine Kopie der Modelle ist in den Ordnern `car` und `car_old` vorhanden. 
+Diese können über den `Resource Spwaner` in eine Simulation eingefügt werden.
+
+Die eingentlichen Modelle sind in einem XML Format geschrieben, welches die einzelnen Links und Joints beschreibt.
+Sie bestehen dabei aus verschiedenen Elementen. Das Projektseminarfahrzeug aus
+
+==== Links
+
+|===
+|Element | Beschreibung
+
+|chassis
+|Hauptlink des Fahrzeugs
+|back_box
+|Hinteres Element des Fahrzeugchassis
+|top_box
+|Aufbau des Chassis
+|front_bumper
+|Element für Stoßdämpfer an der Fahrzeugfront
+|left_frame_back
+|Linker Zwischenlink für Radaufhängung
+|right_frame_back
+|Rechter Zwischenlink für Radaufhängung
+|left_wheel
+|Linkes Hinterrad
+|right_wheel
+|Rechtes Hinterrad
+|left_frame
+|Linker Zwischenlink für Lenkung
+|right_frame
+|Rechter Zwischenlink für Lenkung
+|left_frame_front
+|Linker Zwischenlink vorne für Radaufhängung
+|right_frame_front
+|Rechter Zwischenlink vorne für Radaufhängung
+|left_wheel_front
+|Linkes Vorderrad
+|right_wheel_front
+|Rechtes Vorderrad
+|camera
+|Kamerasensor
+|ultrasonic_front
+|Vorderer Ultraschallsensor
+|ultrasonic_back
+|Hinterer Ultraschallsensor
+|ultrasonic_left
+|Linker Ultraschallsensor
+|ultrasonic_right
+|Rechter Ultraschallsensor
+|imu
+|IMU Sensor
+
+|===
+
+Und das Wettbewerbsauto aus
+
+|===
+|Element | Beschreibung
+
+|chassis
+|Hauptlink des Fahrzeugs
+|back_box
+|Hinteres Element des Fahrzeugchassis
+|left_battery_box
+|Linke Batteriebox
+|right_battery_box
+|Rechte Batteriebox
+|front_bumper
+|Element für Stoßdämpfer an der Fahrzeugfront
+|left_frame_back
+|Linker Zwischenlink für Radaufhängung
+|right_frame_back
+|Rechter Zwischenlink für Radaufhängung
+|left_wheel
+|Linkes Hinterrad
+|right_wheel
+|Rechtes Hinterrad
+|left_frame
+|Linker Zwischenlink für Lenkung
+|right_frame
+|Rechter Zwischenlink für Lenkung
+|left_frame_front
+|Linker Zwischenlink vorne für Radaufhängung
+|right_frame_front
+|Rechter Zwischenlink vorne für Radaufhängung
+|left_wheel_front
+|Linkes Vorderrad
+|right_wheel_front
+|Rechtes Vorderrad
+|camera
+|Kamerasensor
+|ultrasonic_front
+|Vorderer Ultraschallsensor
+|ultrasonic_back
+|Hinterer Ultraschallsensor
+|ultrasonic_left
+|Linker Ultraschallsensor
+|ultrasonic_right
+|Rechter Ultraschallsensor
+|imu
+|IMU Sensor
+
+|===
+
+==== Joints
+Die Joints verbinden Links miteinander. Hier sind 3 Typen von Joints verbaut
+
+===== Fixed
+Die festen Joints stellen eine fixierte verbindung mit fester Position zueinander her. Diese kann nicht durch Krafteinwirkung verändert werden.
+
+===== Revolute
+Die Revoluten Joints sind drehende Sensoren mit einer Drehachse. Folgende Parameter sind einstellbar
+|===
+| Paramter | Beschreibung
+|upper_limit
+|Oberes Limit für Drehungen
+|lower_limit
+|Unteres Limit für Drehungen
+|effort
+|Kraftlimitierer für das gelenk
+|===
+
+===== Prismatic
+Prismatische Joints besitzen mehr Freiheitsgerade, werden aber hier nur für eine Feder-Dämpfer-Verbindung entlang einer AChse eingesetzt. 
+Hier können folgende Parameter eingestellt werden
+|===
+|Parameter|Beschreibung
+|spring_reference
+|Referenzpunkt für Ruhestellung der Feder
+|spring_stiffness
+|Härte der Feder
+|damping
+|Dämpfung des Dämpfers
+|===
+
+==== Kamerasensor
+Der Kamerasensor repräsentiert die Kamera der Fahrzeuge. Hier lassen sich folgende Parameter einstellen
+|===
+|Parameter|Beschreibung
+|horizontal_fov
+|Horizontaler Winkel des Sichtfeldes der Kamera
+|image
+|Auflösung des Bildes in den beiden Parametern `width` und `height`
+|clip
+|Entfernungen bei der Elemente nicht mehr von der Kamera registriert werden. +
+`near` für minimale Distanz+
+`far` für maximale
+|update_rate
+|Aufnahmefrequenz
+|topic
+|Kanal auf dem die Bilder veröffentlicht werden
+|===
+
+==== Ultraschallsensoren
+Bei beiden Fahrzeugen sind Lidarsensoren verbaut als Ultraschallsensoren. Dieser Umstand ist der Tatsache geschuldet, dass es zum aktuellen Zeitpunkt noch keine 
+eigene Implementierung gibt. Hier einstellbar sind die folgenden Parameter.
+
+|===
+| Parameter| Beschreibung
+|topic
+|Kanal auf dem Daten veröffentlicht werden
+|scan/horizontal
+|Horizontale Messausdehnung mit Parametern+
+`samples` - Zahl der Messungen + 
+`resolution` - Auflösung der Messungen + 
+`min_angle` - Minimale Grenze des Sichtfeldes +
+`max_angle` - Maximale Grenze des Sichtfeldes
+|scan/vertical
+|Verticale Messausdehnung mit Parametern+
+`samples` - Zahl der Messungen + 
+`resolution` - Auflösung der Messungen + 
+`min_angle` - Minimale Grenze des Sichtfeldes +
+`max_angle` - Maximale Grenze des Sichtfeldes
+|range
+|Reichweiteneinstellungen mit Parametern+
+`min` - Minimale Messdistanz +
+`max` - Maximale Messdistanz +
+`resolution` - Auflösung der Distanzen in mm
+|===
+
+==== IMU Sensor
+Der IMU Sensor ist ebenfalls eine native Implementierung von Ignition und kann mit folgenden Parametern eingestellt werden. 
+Hierbei verwendet die IMU ihrerseits ein Magenetometer.
+
+|===
+|Parameter|Beschreibung
+|always_on
+|Flag ob der Sensor dauerhaft läuft
+|update_rate
+|Messfrequenz
+|topic
+|Kanal auf dem Daten versendet werden
+|magnetometer
+|Achsen des Magnetometers auf die Noise aufgebracht werden kann als `x`, `y` und `z` als +
+`noise` beispielsweise "gaussian" +
+`mean` Mittelwert +
+`stddev` Standartabweichung
+|===
+
+Beide Fahrzeuge nutzen das Steuerplugin. Diesem müssen und können einige Parameter übergeben werden.
+
+|===
+|Parameter | Beschreibung
+|joint_name
+|Name des Gelenks des rechten Hinterrades
+|joint_name_2
+|Name des Gelenkes der rechten Lenkung
+|joint_name_3
+|Name des Gelenks des linken Hinterrades
+|joint_name_4
+|Name des Gelenks der linken Lenkung
+|front_wheel_left
+|Name des Gelenks des linken Vorderrades
+|front_wheel_right
+|Name des Gelenks des rechten Vorderrades
+|p_gain
+|P-Anteil der Lenkregelung (optional)
+|i_gain
+|I-Anteil der Lenkregelung (optional)
+|d_gain
+|D-Anteil der Lenkregelung (optional)
+|wheel_distance
+|Fahrzeugbreite an der Radmitte in m(optional)
+|axel_distance
+|Radstand an der Achsmitte in m(optional)
+|wheel_radius
+|Radradius in m(optional)
+|car_type
+|Projekt oder Wettbewerbsfahrzeug entweder `old` oder `new`. Beeinflusst die Geschwindigkeitsmessung
+|===
+

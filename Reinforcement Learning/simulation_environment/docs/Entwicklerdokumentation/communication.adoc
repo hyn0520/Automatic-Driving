@@ -1,0 +1,80 @@
+=== *Kommunikation*
+
+Die Kommunikation besteht aus mehreren Schritten.
+
+==== Simulation
+Die erste Instanz ist die Simulation selbst. Das Plugin innerhalb der Modelle und die Sensorlinks übernehmen hier das senden/empfangen
+Diese tauschen sich über ignitionspezifische Kanäle aus. Diese können aufgelistet werden mit 
+
+----
+ing topic -l
+----
+
+Hier werden folgende Kanäle genutzt
+|===
+|Kanal|Beschreibung
+|/camera|Kamerabilder
+|/camera_info|Infos und Stats über die Kamera
+|/clock|Laufende Zeit
+|/dt8_data|Hallsensordaten auf Projektseminarfahrzeug
+|/dt_data|Einzelne Hallsensordaten auf Projektseminarfahrzeug
+|/enc_cm_data|Daten des Inkrementalgebers auf Wettbewerbsfahrzeug
+|/enc_step_data|Schrittdaten des Inkrementalgebers auf Wettbewerbsauto
+|/gazebo/resource_paths|Dateipfad von Ignition
+|/gui/camera/pose|Position der Kamera
+|/gui/record_video/stats|Information über Video Aufnahmen
+|/hall_cnt_data|Anzahl der Messungen des Hall Sensors
+|/imu_data|Daten der IMU
+|/keyboard/keypress|Informationen über gedrückte Tasten
+|/lidar_back|Informationen des hinteren Lidar Sensors
+|/lidar_back/points|Datenpunkte des hinteren Lidar Sensors
+|/lidar_front|Informationen des vorderen Lidar Sensors
+|/lidar_front/points|Datenpunkte des vorderen Lidar Sensors
+|/lidar_left|Informationen des linken Lidar Sensors
+|/lidar_left/points|Datenpunkte des linken Lidar Sensors
+|/lidar_right|Informationen des rechten Lidar Sensors
+|/lidar_right/points|Datenpunkte des rechten Lidar Sensors
+|/set_motor_level_msg|Eingehende Nachrichten über Geschwindigkeit
+|/set_steering_level_msg|Eingehende Nachrichten über Lenkwinkel
+|/stats|Grundinformationen über Simulation
+|/world/car_world/clock|Laufende Zeit in der Simulation
+|/world/car_world/dynamic_pose/info|TF Daten über Dynamische Pose der Modelle
+|/world/car_world/pose/info|Info über Pose der Modelle
+|/world/car_world/scene/deletion|Id potentiell gelöschter Elemente
+|/world/car_world/scene/info|Info über Szeneeinstellungen
+|/world/car_world/state|Aktueller Status der Modellwelt
+|/world/car_world/stats|Aktuelle Informationen über die Modellwelt
+|===
+
+==== Filter
+Die Filtereinheit ist ein separater Knoten und Filtert die Lidar Daten der Sensoren um die Funktionsweise von Ultraschallsensoren zu kopieren.
+Die Ausgaben hier sind 
+|===
+|us_front
+|us_back
+|us_left
+|us_back
+|===
+
+Aus den jeweiligen Lidarsensoren. Der Filter muss separat Gebaut werden
+
+----
+cd ~/simulation_ws/src/simulation/nodes/build
+cmake ..
+make lidar_node
+----
+
+==== Ros Brücke 
+
+Die Brücke übersetzt alle übergebenen Ignitionnachrichten in ROS2 Nachrichten. Alle Kanäle sollten mit 
+
+----
+<kanal>@<ros-typ>@<ignition-typ>
+----
+angegeben werden. Nähere Infos können im offiziellen Repro nachgelesen werden.
+https://github.com/ignitionrobotics/ros_ign[ros_ign]
+
+==== Übersetzerknoten
+Der Übersetzerknoten übersetzt ROS2 Nachrichten, deren Typ nicht von der ROS-Brücke in Ignition konvertiert werden kann, in solche wo es möglich ist.
+
+

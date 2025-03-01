@@ -1,0 +1,14 @@
+material Plane/Image
+    {
+      technique
+      {
+        pass
+        {
+          texture_unit
+          {
+            texture map01.png
+          }
+        }
+      }
+    }
+

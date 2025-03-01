@@ -1,0 +1,49 @@
+=== *Start der Simulation*
+
+Um eine Simulation zu starten können die Welten einzeln gestartet werden oder per Launch file.
+Bei Verwendung mit Launch file reicht
+
+==== 
+ros2 launch simluation old_car.launch
+====
+
+für das Projektseminarauto und 
+
+====
+ros2 launch simluation new_car.launch
+====
+
+für das Wettbewerbsfahrzeug.
+
+Bei einem manuellen Start müssen mehrere Dinge gestartet werden. Jeder Abschnitt muss in einem eigenne Terminal gestartet werden.
+
+Die Simulation
+====
+ign gazebo ~/simulation_ws/src/simulation_projektseminar/old_model_complete.sdf
+ign gazebo ~/simulation_ws/src/simulation_carolo_cup/complex_world.sdf
+====
+
+Die Brücke abhängig von den verwendeten Kommunikationskanälen
+====
+ros2 run ros_ign parameter_bridge <channel>@<ros-type>@<ignition-type>
+====
+
+Für mehr details über die Typen und die Verwendung kann das offizielle Repository konsultiert werden https://github.com/osrf/ros_ign.git[ros-ign]
+
+Der Übersetzerknoten
+====
+ros2 run translator translator_node
+====
+
+Der Datenfilter für die Ultraschallsensoren
+====
+~/simulation_ws/src/simulation/nodes/build/lidar_node
+====
+
+Um die Startbox in der Simulation erscheinen und verschwinden zu lassen kann entweder der `Resource Spwaner` in der Simulation genutzt werden oder eine Gui die mit 
+
+====
+python3 ~/simulation_ws/src/simulation/gui/button.py
+====
+
+aufgerufen werden kann.

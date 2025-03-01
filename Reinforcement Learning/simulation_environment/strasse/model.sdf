@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="Straße">
+    <static>true</static>
+    <link name="link">
+    	<colission name="colission">
+        <geometry>
+          <mesh>
+            <uri>model://strasse/meshes/strasse.dae</uri>
+          </mesh>
+        </geometry>
+      </colission>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://strasse/meshes/strasse.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,24 @@
+# All settings not listed here will use the Doxygen default values.
+
+PROJECT_NAME           = "Simulationsumgebung"
+PROJECT_BRIEF          = "Simulation environment for autonomous vehicles"
+
+RECURSIVE              = YES
+OUTPUT_DIRECTORY       = docs/cpp-docs
+
+INPUT                  = src/
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = .
+
+EXTRACT_ALL            = YES
+SORT_MEMBER_DOCS       = NO
+
+GENERATE_LATEX         = NO
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+
+JAVADOC_AUTOBRIEF      = YES
+

@@ -1,0 +1,409 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<model name='vehicle_blue' canonical_link='chassis'>
+            <pose relative_to='world'>0 0 0 0 0 0</pose>   <!--the pose is relative to the world by default-->
+            
+            <!--chassis-->
+            <link name='chassis'>   
+                <pose relative_to='__model__'>0.5 0 1.2 0 0 0</pose> 
+                <inertial> <!--inertial properties of the link mass, inertia matix-->
+                    <mass>1.14395</mass>
+                    <inertia>
+                        <ixx>0.095329</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.381317</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.476646</izz>
+                    </inertia>
+                </inertial>
+                <visual name='visual'>
+                    <geometry>
+			  <mesh>
+			    <uri>model://car_old/meshes/old_car.dae</uri>
+			  </mesh>
+		     </geometry>
+                </visual>
+                <collision name='collision'>
+                    <geometry>
+                        <box>
+                            <size>2.0 1.0 0.5</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+
+            <!--Left wheel-->
+            <link name='left_wheel'> 
+                <pose relative_to="chassis">-0.7 0.4 -0.35 -1.5707 0 0</pose> <!--angles are in radian-->
+                <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                        <ixx>0.043333</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.043333</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.08</izz>
+                    </inertia>
+                </inertial>
+                <visual name='visual'>
+                    <geometry>
+                        <box>
+                            <size>0.5 0.5 0.5</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>1.0 0.0 0.0 1</ambient>
+                        <diffuse>1.0 0.0 0.0 1</diffuse>
+                        <specular>1.0 0.0 0.0 1</specular>
+                    </material>
+                </visual>
+                <collision name='collision'>
+                    <geometry>
+                        <cylinder>
+                            <radius>0.1</radius>
+                            <length>0.2</length>
+                        </cylinder>
+                    </geometry>
+                </collision>
+            </link>
+
+            <!--The same as left wheel but with different position-->
+            <link name='right_wheel'>
+                <pose relative_to="chassis">-0.7 -0.4 -0.35 -1.5707 0 0</pose> <!--angles are in radian-->
+                <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                        <ixx>0.043333</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.043333</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.08</izz>
+                    </inertia>
+                </inertial>
+                <visual name='visual'>
+                    <geometry>
+                        <box>
+                            <size>0.5 0.5 0.5</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>1.0 0.0 0.0 1</ambient>
+                        <diffuse>1.0 0.0 0.0 1</diffuse>
+                        <specular>1.0 0.0 0.0 1</specular>
+                    </material>
+                </visual>
+                <collision name='collision'>
+                    <geometry>
+                        <cylinder>
+                            <radius>0.1</radius>
+                            <length>0.2</length>
+                        </cylinder>
+                    </geometry>
+                </collision>
+            </link>
+            
+             <!--arbitrary link left -->
+            <link name="left_frame">
+                <pose relative_to="chassis">0.7 0.4 -0.35 -1.5707 0 0</pose> <!--angles are in radian-->
+                <visual name='visual'>
+                  <geometry>
+                    <box>
+                      <size>0.15 0.1 0.15</size>
+                    </box>
+                  </geometry>	
+                </visual>
+            </link>
+            
+            <!--arbitrary frame right-->
+            <link name="right_frame">
+                <pose relative_to="chassis">0.7 -0.4 -0.35 1.5707 0 0</pose> <!--angles are in radian-->
+                <visual name='visual'>
+                  <geometry>
+                    <box>
+                      <size>0.15 0.1 0.15</size>
+                    </box>
+                  </geometry>	
+                </visual>
+            </link>
+            
+            <!--Left wheel-->
+            <link name='left_wheel_back'> 
+                <pose relative_to="left_frame">0 0 0 3.14 0 0</pose> <!--angles are in radian-->
+                <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                        <ixx>0.043333</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.043333</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.08</izz>
+                    </inertia>
+                </inertial>
+                <visual name='visual'>
+                    <geometry>
+                        <box>
+                            <size>0.5 0.5 0.5</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>1.0 0.0 0.0 1</ambient>
+                        <diffuse>1.0 0.0 0.0 1</diffuse>
+                        <specular>1.0 0.0 0.0 1</specular>
+                    </material>
+                </visual>
+                <collision name='collision'>
+                    <geometry>
+                        <cylinder>
+                            <radius>0.1</radius>
+                            <length>0.2</length>
+                        </cylinder>
+                    </geometry>
+                </collision>
+            </link>
+
+            <!--The same as left wheel but with different position-->
+            <link name='right_wheel_back'>
+                <pose relative_to="right_frame">0 0 0 3.14 0 0</pose> <!--angles are in radian-->
+                <inertial>
+                    <mass>1</mass>
+                    <inertia>
+                        <ixx>0.043333</ixx>
+                        <ixy>0</ixy>
+                        <ixz>0</ixz>
+                        <iyy>0.043333</iyy>
+                        <iyz>0</iyz>
+                        <izz>0.08</izz>
+                    </inertia>
+                </inertial>
+                <visual name='visual'>
+                    <geometry>
+                        <box>
+                            <size>0.5 0.5 0.5</size>
+                        </box>
+                    </geometry>
+                    <material>
+                        <ambient>1.0 0.0 0.0 1</ambient>
+                        <diffuse>1.0 0.0 0.0 1</diffuse>
+                        <specular>1.0 0.0 0.0 1</specular>
+                    </material>
+                </visual>
+                <collision name='collision'>
+                    <geometry>
+                        <cylinder>
+                            <radius>0.1</radius>
+                            <length>0.2</length>
+                        </cylinder>
+                    </geometry>
+                </collision>
+            </link>
+
+            <!--left wheel joint-->
+            <joint name='left_wheel_joint' type='revolute'>
+                <pose relative_to='left_wheel'/>
+                <parent>chassis</parent>
+                <child>left_wheel</child>
+                <axis>
+                    <xyz expressed_in='__model__'>0 1 0</xyz> <!--can be descired to any frame or even arbitrary frames-->
+                    <limit>
+                        <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                        <upper>1.79769e+308</upper>     <!--positive infinity-->
+                    </limit>
+                </axis>
+            </joint>
+
+            <!--right wheel joint-->
+            <joint name='right_wheel_joint' type='revolute'>
+                <pose relative_to='right_wheel'/>
+                <parent>chassis</parent>
+                <child>right_wheel</child>
+                <axis>
+                    <xyz expressed_in='__model__'>0 1 0</xyz>
+                    <limit>
+                        <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                        <upper>1.79769e+308</upper>     <!--positive infinity-->
+                    </limit>
+                </axis>
+            </joint>
+            
+            <!--left wheel ancker joint-->
+            <joint name='left_anker_joint' type='revolute'>
+                <pose relative_to='left_frame'/>
+                <parent>chassis</parent>
+                <child>left_frame</child>
+                <axis>
+                    <xyz expressed_in='__model__'>0 0 -1</xyz>
+                    <limit>
+                        <lower>-0.689775</lower>    <!--negative infinity-->
+                        <upper>0.78535</upper>     <!--positive infinity-->
+                        <effort>100</effort>
+                    </limit>
+                </axis>
+            </joint>
+
+            <!--right wheel joint ancker joint-->
+            <joint name='right_anker_joint' type='revolute'>
+                <pose relative_to='right_frame'/>
+                <parent>chassis</parent>
+                <child>right_frame</child>
+                <axis>
+                    <xyz expressed_in='__model__'>0 0 1</xyz>
+                    <limit>
+                        <lower>-0.78535</lower>    <!--negative infinity-->
+                        <upper>0.689775</upper>     <!--positive infinity-->
+                        <effort>100</effort>
+                    </limit>
+                </axis>
+            </joint>
+            
+            <!--left wheel back joint-->
+            <joint name='left_wheel_back_joint' type='revolute'>
+                <pose relative_to='left_wheel_back'/>
+                <parent>left_frame</parent>
+                <child>left_wheel_back</child>
+                <axis>
+                    <xyz expressed_in='__model__'>0 1 0</xyz> <!--can be descired to any frame or even arbitrary frames-->
+                    <limit>
+                        <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                        <upper>1.79769e+308</upper>     <!--positive infinity-->
+                    </limit>
+                </axis>
+            </joint>
+
+            <!--right wheel back joint-->
+            <joint name='right_wheel_back_joint' type='revolute'>
+                <pose relative_to='right_wheel_back'/>
+                <parent>right_frame</parent>
+                <child>right_wheel_back</child>
+                <axis>
+                    <xyz expressed_in='__model__'>0 1 0</xyz>
+                    <limit>
+                        <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                        <upper>1.79769e+308</upper>     <!--positive infinity-->
+                    </limit>
+                </axis>
+            </joint>
+            
+        <link name="camera">
+            <pose relative_to=chassis>0.95 0.05 1.35 0 0.3 0</pose>
+            <inertial>
+            <mass>0.1</mass>
+            <inertia>
+                <ixx>0.000166667</ixx>
+                <iyy>0.000166667</iyy>
+                <izz>0.000166667</izz>
+            </inertia>
+            </inertial>
+            <collision name="collision">
+            <geometry>
+                <box>
+                <size>0.1 0.1 0.1</size>
+                </box>
+            </geometry>
+            </collision>
+            <visual name="visual">
+            <geometry>
+                <box>
+                <size>0.1 0.1 0.1</size>
+                </box>
+            </geometry>
+            </visual>
+            <sensor name="camera" type="camera">
+            <camera>
+                <horizontal_fov>1.047</horizontal_fov>
+                <image>
+                <width>1080</width>
+                <height>810</height>
+                </image>
+                <clip>
+                <near>0.1</near>
+                <far>100</far>
+                </clip>
+            </camera>
+            <always_on>1</always_on>
+            <update_rate>30</update_rate>
+            <visualize>true</visualize>
+            <topic>camera</topic>
+            </sensor>
+	      </link>
+
+          <link name="ultrasonic">
+            <pose relative_to=chassis>1 0 0 0 0 0</pose>
+            <inertial>
+            <mass>0.1</mass>
+            <inertia>
+                <ixx>0.000166667</ixx>
+                <iyy>0.000166667</iyy>
+                <izz>0.000166667</izz>
+            </inertia>
+            </inertial>
+            <collision name="collision">
+            <geometry>
+                <box>
+                <size>0.1 0.1 0.1</size>
+                </box>
+            </geometry>
+            </collision>
+            <visual name="visual">
+            <geometry>
+                <box>
+                <size>0.1 0.1 0.1</size>
+                </box>
+            </geometry>
+            </visual>
+            
+          </link>
+	      
+	      <joint name='camera_joint' type='fixed'>
+                <parent>chassis</parent>
+                <child>camera</child>
+              </joint>
+
+        <joint name='sensor_joint' type='fixed'>
+                <parent>chassis</parent>
+                <child>ultrasonic</child>
+              </joint>
+		
+		<plugin
+			filename="ignition-gazebo-joint-controller-system"
+			name="ignition::gazebo::systems::JointController">
+			<joint_name>right_wheel_joint</joint_name>
+            <topic>cmd_pos</topic>
+	    </plugin>
+	    <plugin
+			filename="ignition-gazebo-joint-controller-system"
+			name="ignition::gazebo::systems::JointController">
+			<joint_name>left_wheel_joint</joint_name>
+	    </plugin>
+
+        <plugin
+            filename="ignition-gazebo-joint-position-controller-system"
+            name="ignition::gazebo::systems::JointPositionController">
+            <joint_name>left_anker_joint</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+            <i_max>1</i_max>
+            <i_min>-1</i_min>
+            <cmd_max>1000</cmd_max>
+            <cmd_min>-1000</cmd_min>
+        </plugin>
+
+      <plugin
+            filename="ignition-gazebo-joint-position-controller-system"
+            name="ignition::gazebo::systems::JointPositionController">
+            <joint_name>right_anker_joint</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+            <i_max>1</i_max>
+            <i_min>-1</i_min>
+            <cmd_max>1000</cmd_max>
+            <cmd_min>-1000</cmd_min>
+        </plugin>	
+		
+        </model>
+</sdf>

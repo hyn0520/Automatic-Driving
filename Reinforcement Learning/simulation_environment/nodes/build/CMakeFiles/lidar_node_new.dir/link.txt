@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/lidar_node_new.dir/lidar_node_new.cc.o  -o lidar_node_new  /usr/lib/x86_64-linux-gnu/libignition-transport8.so.8.2.0 /usr/lib/x86_64-linux-gnu/libignition-msgs5.so.5.8.0 /usr/lib/x86_64-linux-gnu/libprotobuf.so -lpthread /usr/lib/x86_64-linux-gnu/libignition-math6.so.6.8.0 /usr/lib/x86_64-linux-gnu/libuuid.so /usr/lib/x86_64-linux-gnu/libuuid.so 

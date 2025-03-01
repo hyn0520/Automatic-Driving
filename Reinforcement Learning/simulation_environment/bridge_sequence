@@ -1,0 +1,11 @@
+"/model/vehicle_blue/joint/right_anker_joint/0/cmd_pos" -m ignition.msgs.Double -p "data: 10.0"
+
+
+ros2 run ros_ign_bridge parameter_bridge /model/vehicle_blue/joint/right_wheel_joint/cmd_vel@std_msgs/msg/Float64@ignition.msgs.Double /model/vehicle_blue/joint/left_wheel_joint/cmd_vel@std_msgs/msg/Float64@ignition.msgs.Double /right_wheel@std_msgs/msg/Float64@ignition.msgs.Double /left_wheel@std_msgs/msg/Float64@ignition.msgs.Double /camera@sensor_msgs/msg/Image@ignition.msgs.Image /camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo --ros-args --remap /camera:=/camera/color/image_raw
+
+
+ros2 run ros_ign_bridge parameter_bridge /set_motor_level_msg@std_msgs/msg/Float64@ignition.msgs.Double /set_steering_level_msg@std_msgs/msg/Float64@ignition.msgs.Double /camera@sensor_msgs/msg/Image@ignition.msgs.Image /camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo /imu@sensor_msgs/msg/Imu@ignition.msgs.IMU --ros-args --remap /camera:=/camera/color/image_raw
+
+
+ros2 run ros_ign_bridge parameter_bridge /set_motor_level_msg@std_msgs/msg/Float64@ignition.msgs.Double /set_steering_level_msg@std_msgs/msg/Float64@ignition.msgs.Double /camera@sensor_msgs/msg/Image@ignition.msgs.Image /camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo /us_front@std_msgs/msg/Float64@ignition.msgs.Double /us_back@std_msgs/msg/Float64@ignition.msgs.Double /us_left@std_msgs/msg/Float64@ignition.msgs.Double /us_right@std_msgs/msg/Float64@ignition.msgs.Double /imu@sensor_msgs/msg/Imu@ignition.msgs.IMU --ros-args --remap /camera:=/camera/color/image_raw
+

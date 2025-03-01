@@ -1,0 +1,117 @@
+= Entwicklerdokumentation zur Simulationsumgebung
+
+== Abhängigkeiten
+
+Um die Simulationsumgebung nutzen zu können muss verschiedene Software installiert werden.
+
+Entwickelt wurde die Simulationsumgebung auf Ubuntu 20.04, andere Betriebssysteme wurden bisher nicht getestet.
+
+=== Ignition
+
+Einmal muss Ignition Citadel installiert werden.
+
+https://ignitionrobotics.org/docs/citadel/install_ubuntu[Ignition Citadel Install]
+
+Anschließend muss in die `~/.bashrc` geöffnet werden und die folgenden Zeilen hinzugefügt
+
+----
+export LC_NUMERIC="C"
+export IGN_GAZEBO_SYSTEM_PLUGIN_PATH=$IGN_GAZEBO_SYSTEM_PLUGIN_PATH:~/bridge_ws/build/simulation/
+export IGN_GAZEBO_RESOURCE_PATH=~/bridge_ws/src/simulation/
+----
+
+=== ROS
+
+Zusätzlich muss ROS2 Foxy installiert sein
+
+https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html[ROS2 Foxy Binary Install]
+
+Auch hier kann die `~/.bashrc` erweitert werden, um ROS bei jedem neuen Terminal zu sourcen.
+
+Die folgenden Zeilen müssen hierfür am Ende eingefügt werden
+
+----
+source /opt/ros/foxy/setup.bash
+----
+
+=== Installation
+
+Nach den Abhängigkeiten können die Simulation heruntergeladen und installiert werden.
+
+Hierzu muss eine neuer Workspace eröffnet werden.
+
+----
+mkdir -p ~/simulation_ws/src
+----
+
+Anschließend wird in den `src` Ordner gewechselt
+
+----
+cd ~/simulation_ws/src
+----
+
+und das Repository der Simulation aus Git heruntergeladen
+
+----
+git clone git@git-ce.rwth-aachen.de:af/simulation.git
+----
+
+Innerhalb des Repositories muss auf den Branch `master` gewechslet werden
+
+----
+cd simulation
+git checkout master
+----
+
+Überprüfen kann man den Branch mit 
+----
+git status
+----
+
+Zusätzlich muss noch die `ros_ign_bridge` manuell installiert werden. 
+Hierzu muss zunächst die Igniton version angegben werden mit 
+----
+export IGNITION_VERSION=citadel
+----
+
+Anschließend wird in den `src` Ordner gewechslt und die Software heruntergeladen
+----
+cd ~/simulation_ws/src
+git clone https://github.com/osrf/ros_ign.git -b foxy
+----
+
+Innerhalb des Repositories muss auf den Branch `foxy` gewechslet werden
+
+----
+cd ros_ign
+git checkout foxy
+----
+
+Nach dem erfolgreichen Herunterladen kann alles installiert und gebaut werden
+
+----
+cd ~/simulation_ws
+colcon build --symlink-install
+----
+
+Nach Fertigstellung muss das Repository noch gesourced werden
+----
+source install/setup.bash
+----
+
+Danach kann die Simulation gestartet werden.
+Um eine Basissimulation mit dem Projektseminarfahrzeug zu starten kann 
+----
+ros2 launch simulation old_car.launch
+----
+verwendet werden.
+
+include::start.adoc[]
+
+include::simulation_options.adoc[]
+ 
+include::car_models.adoc[]
+
+include::plugin.adoc[]
+
+include::communication.adoc[]

@@ -1,0 +1,22 @@
+=== *Plugin*
+
+Das Plugin ist das zentrale Verwaltungstool für die Bewegungen des Fahrzeugs.
+Hierbei wird eine Einheit der Klasse `Sample System` erzeugt mit allen Parametern und Funktionen.
+
+Hier sind die wichtigen Funktionen
+
+==== Configure
+
+Hier werden alle wichtigen Parameter gesetzt und zugeteilt. Alle Paramter die in dem SDF übergeben werden, werden hier ausgelesen.
+Außerdem werden die Regler für die Lenkung und das Halten der Position initializiert und die Subscriber festgelegt.
+
+==== PreUpdate
+
+Hier werden alle Entities inizialisiert, wenn sie es noch nicht sind und anschließend mit Befehlen versehen.
+Allem Vorran werden die einzelnen Geschwindigkeiten, die durch die Subscriber vorgegeben werden, auf die Radachsen verteilt und die Regler für die Lenkung geupdated.
+Die Berechnungen folgen dabei einer Erweiterung für 4 Rädrige Fahrzeuge des Ackermannmodells.
+Die Berechneten Werte werden im nächsten Simulationsschritt umgesetzt.
+
+==== PostUpdate
+
+Hier werden nach einem Simulationsschritt die Werte der Geschwindigkeitsausgabe berechnet und veröffentlicht.

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="Start_Box">
+    <static>true</static>
+    <link name="link">
+      <pose>0 0 0 1.57 0 1.57</pose>
+    	<colission name="colission">
+        <geometry>
+          <box>
+              <size>0.3 0.5 0.01</size>
+          </box>
+        </geometry>
+      </colission>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://start_box/meshes/start_box.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
